@@ -4,6 +4,8 @@ A very simple directory lock using a temporary lock file.
 While the lock is present, another process cannot write into the directory.
 At least if it is using the same lock mechanism, of course any process can write into the directory if it likes...
 
+Apparently this seems to be much cooler: https://pypi.org/project/filelock/
+
 ## FAQ
 
 - Is this tested?
