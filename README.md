@@ -9,7 +9,7 @@ Apparently this seems to be much cooler: https://pypi.org/project/filelock/
 ## FAQ
 
 - Is this tested?
-    + What are these 'tests' you're talking about?
+    + yes
 - Does it always work as advertised?
     + Probably not
 - Install with `pip install [--user] .` when in the directory with the `setup.py` in it
