@@ -70,8 +70,16 @@ class DirLock():
                 try:
                     # 'x' -> Error on exist, the whole lock 'magic'
                     lock = open(self._lock_file, "x")
-                except (IOError, OSError):
-                    pass  # Raises if exists or other IO errors
+                except OSError as err:
+                    if err.errno == errno.EEXIST:
+                        pass  # File is present, need to wait for unlock
+                    elif err.errno == errno.ENOENT:
+                        raise FileNotFoundError(
+                            "Directory '{}' does not exist. "
+                            "Use 'create_dir=True' or create it manually."
+                            "".format(self._lock_dir)) from err
+                    else:
+                        raise  # Everything else is not our business
                 else:
                     self._LOCKED = lock
 
