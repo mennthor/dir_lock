@@ -1,5 +1,6 @@
 import os
 import time
+import errno
 
 
 class DirLock():
@@ -49,8 +50,8 @@ class DirLock():
             raise ValueError("Timeout must be None or int or float >0.")
         self._timeout = timeout
 
-        # If given, create the to be locked dir
-        os.makedirs(self._lock_dir, exist_ok=create_dir)
+        if create_dir:
+            os.makedirs(self._lock_dir, exist_ok=True)
 
     @property
     def lock_file(self):

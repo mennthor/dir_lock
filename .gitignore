@@ -3,3 +3,5 @@ work_dir
 __pycache__/
 *.py[cod]
 *$py.class
+
+dir_lock.egg-info/

@@ -10,6 +10,7 @@ At least if it is using the same lock mechanism, of course any process can write
     + What are these 'tests' you're talking about?
 - Does it always work as advertised?
     + Probably not
+- Install with `pip install [--user] .` when in the directory with the `setup.py` in it
 
 ## Usage
 
@@ -34,4 +35,4 @@ print("Done, left lock. Lockfile is gone")
 
 Also try the example script in two different processes:
 
-![Example](example.gif)
+![Example](example/example.gif)
