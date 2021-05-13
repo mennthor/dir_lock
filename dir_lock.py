@@ -2,14 +2,7 @@ import os
 import time
 
 
-class DirLock(object):
-    _OPEN_MODES = (
-        os.O_WRONLY  # open for writing only
-        | os.O_CREAT  # create file if it does not exist
-        | os.O_TRUNC  # truncate size to 0
-        | os.O_EXCL  # error if create and file exists -> Important for the lock
-        )
-
+class DirLock():
     def __init__(self, lock_file, poll_interval=1,
                  create_dir=False, timeout=None):
         """
@@ -74,7 +67,8 @@ class DirLock(object):
                 # Else we create it and we're good, even if called recursively
                 # in an already locked state.
                 try:
-                    lock = os.open(self._lock_file, self._OPEN_MODES)
+                    # 'x' -> Error on exist, the whole lock 'magic'
+                    lock = open(self._lock_file, "x")
                 except (IOError, OSError):
                     pass  # Raises if exists or other IO errors
                 else:
@@ -98,7 +92,7 @@ class DirLock(object):
     def _release(self):
         # If we're locked, close the file and remove it
         if self._LOCKED:
-            os.close(self._LOCKED)
+            self._LOCKED.close()
             try:
                 os.remove(self._lock_file)
             except OSError:
@@ -114,8 +108,6 @@ class DirLock(object):
 
     def __exit__(self, exc_type, exc_value, traceback):
         self._release()
-        return None
 
     def __del__(self):
         self._release()
-        return None
