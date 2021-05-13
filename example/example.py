@@ -23,7 +23,8 @@ args = parser.parse_args()
 
 # The directory we want to lock is the parent of the given lock filename
 lock_file = "./work_dir/_lock"
-print("ID {} : I want to lock '{}'".format(args.id, os.path.dirname(lock_file)))
+print("ID {} : I want to lock '{}'".format(
+    args.id, os.path.dirname(lock_file)))
 
 # Play with these to see a TimeoutError raised
 sleepy_time = 5.
