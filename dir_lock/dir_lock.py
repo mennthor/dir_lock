@@ -19,8 +19,8 @@ class DirLock():
         lock_file : str
             Lockfile name. The directory name of the file is getting locked.
         poll_interval : int or float, optional (default: 1)
-            Intervall in seconds to wait if the lock could not be acquired until
-            a new attempt is made.
+            Intervall in seconds to wait if the lock could not be acquired
+            until a new attempt is made.
         create_dir : bool, optional (default: False)
             If `True` create the to be locked directory if it is not exisitng.
         timeout : None, int or float, optional (default: None)
